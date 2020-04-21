@@ -71,3 +71,11 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+/build.gradle
+/gradlew
+/gradlew.bat
+/local.properties
+/pubspec.lock
+/example/ios/Flutter/flutter_export_environment.sh
+/.gradle/
+/gradle/wrapper/

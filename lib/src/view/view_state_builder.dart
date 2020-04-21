@@ -21,6 +21,8 @@ typedef RefreshingBuilder<T> = Widget Function(BuildContext context, T data);
 /// successfully, but a null element was returned.
 typedef EmptyBuilder = Widget Function(BuildContext context);
 
+typedef OtherStateBuilder = Widget Function(BuildContext context, ViewState state);
+
 /// Builder function for an error. It contains an [error] that has caused
 /// which may allow a view to react differently on different errors.
 typedef ErrorBuilder = Widget Function(
@@ -51,6 +53,7 @@ class ViewStateBuilder<T, B extends Bloc<dynamic, ViewState>>
     SuccessBuilder<T> onSuccess,
     EmptyBuilder onEmpty,
     ErrorBuilder onError,
+    OtherStateBuilder onOther,
     BlocBuilderCondition<ViewState> condition,
   }) : super(
           key: key,
@@ -71,7 +74,7 @@ class ViewStateBuilder<T, B extends Bloc<dynamic, ViewState>>
             } else if (state is Failure) {
               return onError?.call(context, state.error) ?? const SizedBox();
             } else {
-              return const SizedBox();
+              return onOther?.call(context, state);
             }
           },
         );
